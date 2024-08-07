@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yedam.app.emp.mapper.EmpMapper">
+	<!-- 전체조회 -->
+	<select id="selectEmpAllList" resultType="EmpVO">
+		select  employee_id,
+		        first_name,
+		        last_name,
+		        email,
+		        phone_number,
+		        hire_date,
+		        job_id,
+		        salary,
+		        commission_pct,
+		        manager_id,
+		        department_id
+		from    employees
+		<!-- Dynamic SQL -->
+		<where>
+			<if test="departmentId > 0">
+				OR department_id = #{departmentId}			
+			</if>
+			<if test="jobId != null and !jobId.equals(' ')">
+				OR job_id = #{jobId}
+			</if>
+		</where>
+		order by employee_id
+	</select>
+	
+	<!-- 단건조회 -->
+	<select id="selectEmpInfo" resultType="EmpVO">
+		select  employee_id,
+		        first_name,
+		        last_name,
+		        email,
+		        phone_number,
+		        hire_date,
+		        job_id,
+		        salary,
+		        commission_pct,
+		        manager_id,
+		        department_id
+		from    employees
+		where	employee_id = #{employeeId}
+	</select>
+	
+	<!-- 등록 -->
+	<insert id="insertEmpInfo" parameterType="EmpVO">
+		<selectKey keyProperty="employeeId" resultType="Integer" order="BEFORE">
+			select	nvl(max(employee_id), 0) + 1
+			from	employees
+		</selectKey>
+		insert into employees 
+						(
+							employee_id
+							, last_name
+							, email
+							, hire_date
+							, job_id
+							<if test="salary > 0">
+							, salary		
+							</if>
+						)
+		values
+			(
+				#{employeeId}
+				, #{lastName}
+				, #{email}
+				<choose>
+					<when test="hireDate != null">
+					, #{hireDate}					
+					</when>
+					<otherwise>
+					, sysdate
+					</otherwise>
+				</choose>
+				, #{jobId}
+				<if test="salary > 0">
+					, #{salary}	
+				</if>
+			)
+			
+	</insert>
+	
+	<!-- 수정 -->
+	<update id="updateEmpInfo">
+		update	employees
+		set		last_name = #{emp.lastName}
+				, job_id = #{emp.jobId}
+				<if test="emp.salary > 0">
+				, salary = #{emp.salary}
+				</if>
+		where	employee_id = #{id}
+	</update>
+	
+	<!-- 삭제 -->
+	<delete id="deleteEmpInfo" parameterType="int">
+		delete 	
+		from	employees
+		where	employee_id = #{eid}
+	</delete>
+</mapper>
