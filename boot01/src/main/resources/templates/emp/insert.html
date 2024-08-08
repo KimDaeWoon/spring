@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+	<form th:action="@{/empInsert}" method="post" name="insertForm">
+		<h3>사원 정보 등록</h3>
+		<div>
+			<label for="ename">
+				이름
+			</label>
+			<input type="text" id="ename" name="lastName">
+		</div>
+		<div>
+			<label for="email">
+				이메일
+			</label>
+			<input type="email" id="email" name="email">
+		</div>
+		<div>
+			<label for="hDate">
+				입사일
+			</label>
+			<input type="date" id="hDate" name="hireDate">
+		</div>
+		<div>
+			<label for="job">
+				업무
+			</label>
+			<input type="text" id="job" name="jobId">
+		</div>
+		<div>
+			<label for="sal">
+				급여
+			</label>
+			<input type="number" id="sal" name="salary">
+		</div>
+		<div>
+			<button type="submit">등록</button>			
+		</div>
+	</form>
+<script>
+
+$('form[name="insertForm"]').on('submit', insertHandler);
+
+function insertHandler(event){
+	event.preventDefault();
+	
+	let name = $('input[name="lastName"]');
+	if(name.val()==''){
+		alert('이름 없슈');
+		name.focus();
+		return;
+	}
+	
+	let email = $('input[name="email"]');
+	if(email.val()==''){
+		alert('이메일 없슈');
+		email.focus();
+		return;
+	}
+	let hireDate = $('input[name="hireDate"]');
+	if(hireDate.val()==''){
+		alert('입사일 없슈');
+		hireDate.focus();
+		return;
+	}
+	
+	let jobId = $('input[name="jobId"]');
+	if(jobId.val()==''){
+		alert('아이디 없슈');
+		jobId.focus();
+		return;
+	}
+	
+	let salary = $('input[name="salary"]');
+	if(salary.val() <= 0){
+		alert('봉급 없슈');
+		salary.focus();
+		return;
+	}
+	insertForm.submit();
+}
+
+
+		
+</script>
+</body>
+</html>

@@ -20,7 +20,7 @@ public class ThymelseafController {
 		empVO.setEmployeeId(100);
 
 		EmpVO findVO = empService.empInfo(empVO);
-		model.addAttribute("empInfo", findVO);
+		model.addAttribute("empInfo", findVO); // 페이지 전달 empInfo 화면단 변수
 		return "test";
 	}
 }

@@ -43,7 +43,7 @@ public class EmpServiceImpl implements EmpService {
 		Map<String, Object> map = new HashMap<>(); // type 이 다를때 Map 으로 보내기가 수월하다
 		boolean isSuccessed = false;
 
-		int result = empMapper.updateEmpInfo(empVO.getDepartmentId(), empVO);
+		int result = empMapper.updateEmpInfo(empVO.getEmployeeId(), empVO);
 
 		if (result == 1) {
 			isSuccessed = true;

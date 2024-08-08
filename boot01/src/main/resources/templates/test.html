@@ -5,9 +5,23 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<!-- thymeleaf, 유일한 태그 p태그 안에 속성을 적는다 -->
+	<!--/* thymeleaf, 유일한 태그 [[]] p태그 안에 속성을 적는다  기억하기 => */-->
 	<th:block th:each="num :${#numbers.sequence(1,5)}">
 		<p th:text="${num}"/>
 	</th:block>
+	
+	<!--/* 타임리프 기본방식 
+					1) th:속성 = "${}"
+					2) th:src = "@{}" or
+					   th:href = "@{}" or 
+					   th:action = "@{}" */-->
+	<!--/* java 코드로 작성 */-->				   
+	<a th:href="@{/empList}" th:text="'전체조회'">전체 조회</a>
+	<a href="/empList">전체 조회</a>
+	<hr>				   
+	<p>사원정보 : [[${empInfo}]]</p> <!--/* ThymeleafController 에 model.attribute("empInfo") 이것을 의미한다 */-->			
+	<p th:id="${empInfo.employeeId}"
+	   th:name="${empInfo.lastName}"
+	   th:text="${empInfo.jobId + ', '+ empInfo.departmentId}"/>   
 </body>
 </html>
