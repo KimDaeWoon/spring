@@ -88,14 +88,14 @@ public class EmpController {
 	}
 
 	// 수정 - 처리 AJAX => QueryString
-	@PostMapping("empUpdate")
+	// @PostMapping("empUpdate")
 	@ResponseBody // @ResponseBody얘가 AJAX를 의미 한다
 	public Map<String, Object> empupdateAJAXQueryString(EmpVO empVO) {
 		return empService.empUpdate(empVO);
 	}
 
 	// 수정 - 처리 AJAX => JSON (= @RequestBody)
-	// @PostMapping("empUpdate")
+	@PostMapping("empUpdate")
 	@ResponseBody // @ResponseBody얘가 AJAX를 의미 한다
 	public Map<String, Object> empupdateAJAXJSON(@RequestBody EmpVO empVO) {
 		return empService.empUpdate(empVO);

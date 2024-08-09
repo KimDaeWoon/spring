@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org/">
+<html xmlns:th="https://www.thymeleaf.org/"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/layouts/default_layout}"	
+      layout:fragment="Content">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<th:block th:replace="~{common/config/default_config::jQueryConfig}"></th:block>
 </head>
 <body>
 	<form name="updateForm" th:object="${emp}">
@@ -86,20 +89,6 @@
 		})
 		console.log(formObj);
 		return formObj;
-		/* let eidd = $('#eid').val();
-		let enamed = $('#ename').val();
-		let hireDated = $('#hDate').val();
-		let jobIdd = $('#job').val();
-		let salaryd = $('#sal').val();
-		
-		let datalist = {
-				employeeId : eidd,
-				lastName : enamed,
-				hireDate : hireDated,
-				jobId : jobIdd,
-				salary : salaryd
-		}
-		console.log(datalist) */
 	}
 	
 	</script>
