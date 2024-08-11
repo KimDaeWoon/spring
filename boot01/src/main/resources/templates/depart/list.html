@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/layouts/default_layout}"	
+      layout:fragment="Content">
+<head>
+<meta charset="UTF-8">
+<meta name="contextPath" th:value="${contextPath}">
+<title>Insert title here</title>
+<th:block th:replace="~{common/config/default_config::jQueryConfig}"></th:block>
+</head>
+<body>
+	<div>
+		<h2>전체 부서 조회</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>부서 아이디</th>
+					<th>부서 이름</th>
+					<th>관리자 아이디</th>
+					<th>지역 아이디</th>
+				</tr>
+			</thead>
+			<tbody>
+				<th:block th:each="lists:${departs}"></th>
+				<tr>
+					<td th:text="${lists.departmentId}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
