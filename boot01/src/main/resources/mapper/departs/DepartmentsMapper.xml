@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yedam.app.departments.mapper.DepartmentsMapper">
+	<select id="selectDepartsList" resultType="DepartmentsVO">
+		select department_id
+			  ,department_name
+		      ,manager_id
+		      ,location_id
+        from departments
+        <where>
+        	<if test="departmentId != null">
+        		department_id = #{departmentId}
+        	</if>
+        </where>
+        order by department_id
+	</select>
+	
+	<select id="selectDepartsInfo" resultType="DepartmentsVO">
+		select department_id
+			  ,department_name
+		      ,manager_id
+		      ,location_id
+        from departments
+		where department_id = #{departmentId}
+	</select>
+	
+	<insert id="insertDeparts" parameterType="DepartmentsVO">
+		<selectKey keyProperty="departmentId" resultType="Integer" order="BEFORE">
+			select nvl(max(department_id), 0) + 1
+			from departments
+		</selectKey>
+		insert into departments
+					(
+					  department_id	
+					  , department_name
+					  , manager_id
+					  , location_id
+					)
+				values
+					(
+					  #{departmentId} 
+					  , #{departmentName} 
+					  , #{managerId}
+					  , #{locationId}	
+					)	
+					
+	</insert>
+
+	<update id="updateDeparts">
+		update departments
+		set department_name = #{depart.departmentName}
+			, manager_id = #{depart.managerId}
+			, location_id = #{depart.locationId}
+		where department_id = #{id}
+	</update>
+	
+	<delete id="deleteDeparts" parameterType="int">
+		delete from departments
+		where department_id = #{departmentId}
+	</delete>
+</mapper>

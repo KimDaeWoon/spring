@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org/"
-	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{common/layouts/default_layout}"	
-      layout:fragment="Content">
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <meta charset="UTF-8">
 <meta name="contextPath" th:value="${contextPath}">
 <title>Insert title here</title>
-<th:block th:replace="~{common/config/default_config::jQueryConfig}"></th:block>
 </head>
 <body>
 	<div>
@@ -22,12 +19,25 @@
 				</tr>
 			</thead>
 			<tbody>
-				<th:block th:each="lists:${departs}"></th>
+				<th:block th:each="lists:${departs}">
 				<tr>
 					<td th:text="${lists.departmentId}"></td>
-				</tr>
+					<td th:text="${lists.departmentName}"></td>
+					<td th:text="${lists.managerId}"></td>
+					<td th:text="${lists.locationId}"></td>
+				</tr>		
+				</th:block>
 			</tbody>
 		</table>
 	</div>
+	<script>
+		const clc = $('meta[name="contextPath"]').attr('value');
+		$('tbody > tr').on('click', function(event){
+			let tr = event.currentTarget;
+			let did = $(tr).children().eq(0).text();
+			let url = clc + '/departInfo?departmentId=' + did;
+			location.href = url;
+		});
+	</script>
 </body>
 </html>

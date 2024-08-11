@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>단건 조회</h1>
+	<table>
+		<thead>
+			<tr>
+				<td>부서 아이디</td>
+				<td>부서 이름</td>
+				<td>관리자 아이디</td>
+				<td>지역 아이디</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>[[${depart.departmentId}]]</td>
+				<td>[[${depart.departmentName}]]</td>
+				<td>[[${depart.managerId}]]</td>
+				<td>[[${depart.locationId}]]</td>
+			</tr>
+		</tbody>
+	</table>
+	<div>
+		<button type="button" th:onclick="|location.href='@{/departUpdate(departmentId=${depart.departmentId})}'|">수정</button>
+		<button type="button" th:onclick="|location.href='@{/departUpdate(departmentId=${depart.departmentId})}'|">목록</button>
+		<button type="button" th:onclick="|location.href='@{/departUpdate(departmentId=${depart.departmentId})}'|">삭제</button>
+	</div>
+</body>
+</html>

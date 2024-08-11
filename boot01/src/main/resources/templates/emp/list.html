@@ -44,6 +44,7 @@
 		 $('tbody > tr').on('click', function(event){
 			let tr = event.currentTarget;
 			let eid = $(tr).children().eq(1).text();
+			console.log(eid);
 			let url = context + '/empInfo?employeeId=' + eid;
 			location.href = url; // location.href 현재 보여주는 페이지
 		}); 
