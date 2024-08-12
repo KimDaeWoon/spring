@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<title>Form 방식</title>
+</head>
+<body>
+	<form th:action="@{/uploadForm}" method="post" enctype="multipart/form-data">
+	<!-- input type 은 기본적으로 1개만 올릴 수 있다 multiple 설정으로 여러개 파일 올릴 수 있다 -->
+	<!-- 무조건 적으로 multiple 으로 data를 올리는 것이 아닌 input 이 여러개 나타날 수 도 있다 -->
+
+	<input type="file" name="files" multiple>
+	<button type="submit">저장</button>
+	</form>
+</body>
+</html>
