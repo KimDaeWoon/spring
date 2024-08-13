@@ -16,7 +16,7 @@ import com.yedam.app.emp.service.EmpVO;
 
 @Controller // route : 사용자의 요청 (endpoint)와 그에 대한 처리
 			// : URL + METHOD => Service => View
-			// 서비스 화면? 연결 역할
+			// 서비스와 화면에 연결 역할
 public class EmpController {
 	// 해당 컨트롤러에서 제공하는 서비스
 	private EmpService empService;

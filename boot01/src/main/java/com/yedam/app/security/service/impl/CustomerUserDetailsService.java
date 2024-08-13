@@ -6,8 +6,13 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.yedam.app.security.mapper.UserMapper;
+import com.yedam.app.security.service.LoginUserVO;
+import com.yedam.app.security.service.UserVO;
+
 @Service
 public class CustomerUserDetailsService implements UserDetailsService {
+	// UserDetailsService 유저가 있는지 없는지 확인 하는 첫번 째 단계
 
 	private UserMapper userMapper;
 
@@ -18,6 +23,7 @@ public class CustomerUserDetailsService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		// loadUserByUsername 실제로 존재하는지 확인 해준다
 		// Mapper를 활용 하여 DB 에 접근
 		UserVO userVO = userMapper.getUserInfo(username);
 

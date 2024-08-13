@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org/">
+<html xmlns:th="https://www.thymeleaf.org/"
+	  xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
+<!-- <meta name="_csrf" th:value="${_csrf.token}"> -->
 <title>Insert title here</title>
 </head>
 <body>
@@ -10,12 +12,17 @@
 		<li>
 			<a th:href="@{/user}">일반 사용자용 페이지로</a>
 		</li>
-		<li>
+		<li sec:authorize="hasRole('ADMIN')">
 			<a th:href="@{/admin}">관리자 전용 페이지로</a>
 		</li>
 	</ul>
+	<th:block sec:authorize="isAuthenticated()">	<!-- 로그인 했을때 권한 체크 -->
+		<p sec:authentication="name"></p>	<!-- 인증 정보 -->
+		<p sec:authentication="principal.username"></p> <!--/* 화면에서 인증 정보 principal */-->
+		<p sec:authentication="principal.authorities"></p>
 	<form th:action="@{/logout}" method="post">
 		<button type="submit">로그아웃</button>
 	</form>
+	</th:block>
 </body>
 </html>

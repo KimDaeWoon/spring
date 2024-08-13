@@ -33,6 +33,8 @@ public class SpringSecurityConfig {
 				.formLogin(formlogin -> formlogin.defaultSuccessUrl("/all"))
 				.logout(logout -> logout.logoutSuccessUrl("/all").invalidateHttpSession(true));
 
+		// csrf 작동 금지
+		http.csrf(csrf -> csrf.disable());
 		return http.build();
 	}
 

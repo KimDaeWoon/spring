@@ -12,13 +12,14 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @AllArgsConstructor
-@Getter
+@Getter // 외부에서 접근 허용 하기 위해
 public class LoginUserVO implements UserDetails {
 
 	private UserVO userVO;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() { // GrantedAuthority 상속한 제네릭 타입으로 제한한다
+		// GrantedAuthority 하위에 extends 제한 하다 <=> super 부모타입에 제한 하다
 		List<GrantedAuthority> auths = new ArrayList<>();
 		auths.add(new SimpleGrantedAuthority(userVO.getRoleName()));
 		return auths;
